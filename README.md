@@ -15,7 +15,7 @@ Pour l'installer:
     Télécharger le répertoire GitHub et placez le dans le même répertoire que vos projets. C'est très important car le programme génerera votre nouveau projet à sur le meme répertoire que lui.
 
   ETAPE 3:
-    A la racine du répertoire, lancer l'installeur avec ./install
+    A la racine du répertoire GitHub, lancer l'installeur avec ./install
     
     Attention, il est obligatoire de se rendre dans le répertoire à partir du terminal et de taper ./install
 
