@@ -9,7 +9,7 @@ Pour l'installer:
 
   ETAPE 1:
     Télécharger VsCode (https://code.visualstudio.com/download).
-    Après l'installation, lancez VS Code. Ouvrez maintenant la palette de commandes (F1 ou ⇧+ ⌘+ P sur Mac) et tapez shell command pour trouver la Shell Command:     Install 'code' command in PATH commande.
+    Après l'installation, lancez VS Code. Ouvrez maintenant la palette de commandes (F1 ou cmd+shift+P sur Linux et Windows, et ⇧+ ⌘+ P sur Mac) et tapez shell command pour trouver la Shell Command:     Install 'code' command in PATH commande.
 
   ETAPE 2:
     Télécharger le répertoire GitHub
