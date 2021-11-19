@@ -31,4 +31,4 @@ Usage:
   
   Une fois le projet créé vous disposez:
     D'un regénérateur de Makefile, utilisable avec ./makefile_regen
-    D'un Normez qui vérifiera le coding style du projet, utilisable avec ./Normez.rb
+    ainsi que d'un Normez qui vérifiera le coding style du projet, utilisable avec ./Normez.rb
