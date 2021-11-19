@@ -12,7 +12,7 @@ Pour l'installer:
     Après l'installation, lancez VS Code. Ouvrez maintenant la palette de commandes (F1 ou cmd+shift+P sur Linux et Windows, et ⇧+ ⌘+ P sur Mac) et tapez shell command pour trouver la Shell Command:     Install 'code' command in PATH commande.
 
   ETAPE 2:
-    Télécharger le répertoire GitHub
+    Télécharger le répertoire GitHub et placez le dans le même répertoire que vos projets. C'est très important car le programme génerera votre nouveau projet à sur le meme répertoire que lui.
 
   ETAPE 3:
     A la racine du répertoire, lancer l'installeur avec ./install
