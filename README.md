@@ -17,7 +17,7 @@ Pour l'installer:
   ETAPE 3:
     A la racine du répertoire, lancer l'installeur avec ./install
     
-    Attention, il est obligatoirede se rendre dans le répertoire a partir du terminal et de taper ./install
+    Attention, il est obligatoire de se rendre dans le répertoire à partir du terminal et de taper ./install
 
   ETAPE 4:
     Un exécutable ProGen a été créé, placez le ou vous voulez et lancez le pour profiter du générateur
