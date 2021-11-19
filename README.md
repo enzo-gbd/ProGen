@@ -21,8 +21,8 @@ Pour l'installer:
     Un executable ProGen a été créé, placez lee ou vous voulez et lancez le pour profiter du générateur
     
     /!\Attention/!\ le model de base de main.cpp utlise la lib fmt, il est vivement conseillé de l'installer sous peine de ne pas pouvoir compiler : 
-      ```brew install fmt``` avec homebrew
-      ```sudo apt install fmtlib-dev``` sur Linux
+      "brew install fmt" avec homebrew
+      "sudo apt install fmtlib-dev" sur Linux
   
 Usage:
 
