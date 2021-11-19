@@ -19,10 +19,15 @@ m_lang(lang), m_name(name), m_link(link)
         m_name = name;
     }
 }
-
+// /Users/enzogouband/Desktop/project_c
 void Project::Generate()
 {
-    auto path = "/Users/enzogouband/Desktop/project_c"s;
+    auto path = []() {
+        std::string curr_path = std::filesystem::current_path().u8string();
+        std::string path(curr_path.begin(), curr_path.begin() + curr_path.find("/ProGen"));
+        return path;
+    }();
+    std::cout << path << std::endl;
     std::filesystem::current_path(std::filesystem::path(path));
     path = fmt::format("{}/{}", path, [this]() {
         std::string::iterator start = m_link.begin() + m_link.find("B-");
@@ -274,8 +279,11 @@ private:
 
 void Project::Open()
 {
-    auto path = "/Users/enzogouband/Desktop/project_c";
-    // system(fmt::format("code {}/{}", path, m_name).c_str());
+    auto path = []() {
+        std::string curr_path = std::filesystem::current_path().u8string();
+        std::string path(curr_path.begin(), curr_path.begin() + curr_path.find("/ProGen"));
+        return path;
+    }();
     system(fmt::format("code {}/{}", path, [this]() {
         std::string::iterator start = m_link.begin() + m_link.find("B-");
         std::string::iterator end = m_link.begin() + m_link.find(".git");
