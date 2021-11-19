@@ -19,7 +19,7 @@ m_lang(lang), m_name(name), m_link(link)
         m_name = name;
     }
 }
-// /Users/enzogouband/Desktop/project_c
+
 void Project::Generate()
 {
     auto path = []() {
@@ -27,7 +27,8 @@ void Project::Generate()
         std::string path(curr_path.begin(), curr_path.begin() + curr_path.find("/ProGen"));
         return path;
     }();
-    std::cout << path << std::endl;
+    if (path.empty())
+        throw Error(404, "failed to find the folder's path", 3);
     std::filesystem::current_path(std::filesystem::path(path));
     path = fmt::format("{}/{}", path, [this]() {
         std::string::iterator start = m_link.begin() + m_link.find("B-");
@@ -35,10 +36,17 @@ void Project::Generate()
         std::string repo(start, end);
         return repo;
     }());
-    system(fmt::format("git clone {}", m_link).c_str());
+    if (path.find("B-") == std::string::npos)
+        throw Error(500, "Failed to find the Github repo's name", 3);
+    if (system(nullptr) == 0)
+        throw Error(500, "Shell is not available on this system", 3);
+    if (system(fmt::format("git clone {}", m_link).c_str()) < 0)
+        throw Error(404, "Failed to clone the GitHub repo", 3);
     std::filesystem::current_path(std::filesystem::path(path));
-    system("mkdir src include lib");
-    system(fmt::format("cp /Users/enzogouband/Desktop/project_c/project_gen/bin/Normez.rb {}", path).c_str());
+    if (system("mkdir src include lib") < 0)
+        throw Error(404, "Failed to create folders", 3);
+    if (system(fmt::format("cp /Users/enzogouband/Desktop/project_c/project_gen/bin/Normez.rb {}", path).c_str()) < 0)
+        std::cerr << "Failed to get Normez" << std::endl;
     [this]() {
         std::ofstream file("Makefile");
         std::string args;
@@ -135,7 +143,8 @@ make fclean
 rm .prodata ls.dat
         )", ext);
         file.close();
-        system("chmod 777 makefile_regen");
+        if (system("chmod 777 makefile_regen") < 0)
+            std::cout << "Failed to give rights to makefile regen" << std::endl;
     }();
     // on entre dans src
     std::filesystem::current_path(std::filesystem::path(fmt::format("{}/src", path)));
@@ -284,12 +293,15 @@ void Project::Open()
         std::string path(curr_path.begin(), curr_path.begin() + curr_path.find("/ProGen"));
         return path;
     }();
-    system(fmt::format("code {}/{}", path, [this]() {
+    if (path.empty())
+        throw Error(404, "failed to find the folder's path", 3);
+    if (system(fmt::format("code {}/{}", path, [this]() {
         std::string::iterator start = m_link.begin() + m_link.find("B-");
         std::string::iterator end = m_link.begin() + m_link.find(".git");
         std::string repo(start, end);
         return repo;
-    }()).c_str());
+    }()).c_str()) < 0)
+        std::cout "Failed to open with VsCode, please check if the Shell Command is installed" << std::endl;
 }
 
 Project::~Project()
