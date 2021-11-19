@@ -1,0 +1,5 @@
+cd /Users/enzogouband/Desktop/project_c/project_gen/bin
+make
+./project_gen
+make fclean
+cd /Users/enzogouband/Desktop/project_c/project_gen
