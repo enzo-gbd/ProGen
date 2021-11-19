@@ -6,7 +6,7 @@ OBJ_SRC  =	$(SRC:.cpp=.o)
 
 CXXFLAGS =	-std=c++17
 
-NAME     =   project_gen
+NAME     =   ProGen
 
 $(NAME): $(OBJ_SRC)
 	g++ $(OBJ_SRC) -I./../include -Wall -Wextra -Werror -lstdc++ -L/usr/local/opt/llvm/lib -lfmt -o $(NAME)
