@@ -37,25 +37,25 @@ void regen()
         return std::make_tuple(name, path);
     }();
     std::ofstream file("../res/Makefile");
-        std::string args;
-        std::string compil;
-        if (!file.is_open())
-            throw(Error(400, "Failed to create Makefile", 1));
-        if (ls.find(".cpp") == std::string::npos && ls.find(".c") != std::string::npos) {
-            args = fmt::format(R"(SRC =	{}
+    std::string args;
+    std::string compil;
+    if (!file.is_open())
+        throw(Error(400, "Failed to create Makefile", 1));
+    if (ls.find(".cpp") == std::string::npos && ls.find(".c") != std::string::npos) {
+        args = fmt::format(R"(SRC =	{}
 
 OBJ_SRC  =	$(SRC:.c=.o))", ls);
-            compil = "gcc $(OBJ_SRC) -I./../include -Wall -Wextra -Werror -o $(NAME)";
-        } else if (ls.find(".c ") == std::string::npos && ls.find(".cpp") != std::string::npos) {
-            args = fmt::format(R"(SRC =	{}
+        compil = "gcc $(OBJ_SRC) -I./../include -Wall -Wextra -Werror -o $(NAME)";
+    } else if (ls.find(".c ") == std::string::npos && ls.find(".cpp") != std::string::npos) {
+        args = fmt::format(R"(SRC =	{}
 
 OBJ_SRC  =	$(SRC:.cpp=.o)
 
 CXXFLAGS =	-std=c++17)", ls);
-            compil = "g++ $(OBJ_SRC) -I./../include -Wall -Wextra -Werror -lstdc++ -L/usr/local/opt/llvm/lib -lfmt -o $(NAME)";
-        } else
-            throw(Error(400, "Bad type of files\n", 2));
-        file << fmt::format(R"(#** EPITECH PROJECT, 2022
+        compil = "g++ $(OBJ_SRC) -I./../include -Wall -Wextra -Werror -lstdc++ -L/usr/local/opt/llvm/lib -lfmt -o $(NAME)";
+    } else
+        throw(Error(400, "Bad type of files\n", 2));
+    file << fmt::format(R"(#** EPITECH PROJECT, 2022
 #** Makefile
 #** File description:
 #** {}

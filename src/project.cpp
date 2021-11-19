@@ -6,9 +6,9 @@
 using namespace std::string_literals;
 
 auto curr_path = []() {
-        std::string curr_path = std::filesystem::current_path().u8string();
-        std::string path(curr_path.begin(), curr_path.begin() + curr_path.find("/ProGen"));
-        return path;
+    std::string curr_path = std::filesystem::current_path().u8string();
+    std::string path(curr_path.begin(), curr_path.begin() + curr_path.find("/ProGen"));
+    return path;
 }();
 
 Project::Project()
