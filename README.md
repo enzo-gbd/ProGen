@@ -22,14 +22,15 @@ Pour l'installer:
   ETAPE 4:
     Un exécutable ProGen a été créé, placez le ou vous voulez et lancez le pour profiter du générateur
     
-    Attention, le model de base de main.cpp utilise la lib fmt, il est vivement conseillé de l'installer sous peine de ne pas pouvoir compiler : 
+    Attention, le model de base de main.cpp utilise la lib fmt, 
+    il est vivement conseillé de l'installer sous peine de ne pas pouvoir compiler : 
       "brew install fmt" avec homebrew
       "sudo apt install fmtlib-dev" sur Linux
   
 Usage:
 
   Suivez les instructions au lancement du programme.
-  Entrez @ pour le nom du projet afin de générer automatiquement le nom du projet a partir du lien GitHub
+  Entrez @ au moment de choisir le nom du projet afin de générer automatiquement le nom du projet a partir du lien GitHub
   
   Une fois le projet créé vous disposez:
     D'un régénérateur de Makefile, utilisable avec ./makefile_regen
