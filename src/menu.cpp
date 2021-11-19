@@ -7,6 +7,7 @@ Project menu()
     int lang(0);
     std::string name;
     std::string link;
+    std::string vs;
 
     auto get_data = [](auto buff, auto text){
         system("clear");
@@ -31,7 +32,10 @@ Project menu()
     while (link.find("git@github.com:") == std::string::npos) {
         link = get_data(link, "Lien GitHub: ");
     }
+    while (vs != "y" && vs != "n") {
+        vs = get_data(link, "Voules vous ouvrir votre projet avec VsCode? (y or n): ");
+    }
     system("clear");
-    Project projet(lang, name, link);
+    Project projet(lang, name, link, vs);
     return projet;
 }

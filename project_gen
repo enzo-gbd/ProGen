@@ -1,6 +1,0 @@
-rm -rf /Users/enzogouband/Desktop/project_c/B-CPE-200-BDX-2-1-bsmatchstick-enzo.gouband
-cd /Users/enzogouband/Desktop/project_c/ProGen/bin
-make
-./ProGen
-make fclean
-cd /Users/enzogouband/Desktop/project_c/ProGen

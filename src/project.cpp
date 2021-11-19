@@ -15,8 +15,8 @@ Project::Project()
 {
 }
 
-Project::Project(int lang, std::string name, std::string link) : 
-m_lang(lang), m_name(name), m_link(link)
+Project::Project(int lang, std::string name, std::string link, std::string vs) : 
+m_lang(lang), m_name(name), m_link(link), m_vs(vs)
 {
     if (m_name == "@") {
         std::string::iterator start = m_link.begin() + m_link.find("BDX") + 8;
@@ -25,6 +25,7 @@ m_lang(lang), m_name(name), m_link(link)
         m_name = name;
     }
 }
+
 void Project::Generate()
 {
     std::filesystem::current_path(std::filesystem::path(curr_path));
@@ -37,7 +38,7 @@ void Project::Generate()
     system(fmt::format("git clone {}", m_link).c_str());
     std::filesystem::current_path(std::filesystem::path(path));
     system("mkdir src include lib");
-    system(fmt::format("cp /Users/enzogouband/Desktop/project_c/ProGen/bin/Normez.rb {}", path).c_str());
+    system(fmt::format("cp {}/ProGen/bin/Normez.rb {}", curr_path, path).c_str());
     [this]() {
         std::ofstream file("Makefile");
         std::string args;
@@ -278,12 +279,14 @@ private:
 
 void Project::Open()
 {
-    system(fmt::format("code {}/{}", curr_path, [this]() {
-        std::string::iterator start = m_link.begin() + m_link.find("B-");
-        std::string::iterator end = m_link.begin() + m_link.find(".git");
-        std::string repo(start, end);
-        return repo;
-    }()).c_str());
+    if (m_vs == "y") {
+        system(fmt::format("code {}/{}", curr_path, [this]() {
+            std::string::iterator start = m_link.begin() + m_link.find("B-");
+            std::string::iterator end = m_link.begin() + m_link.find(".git");
+            std::string repo(start, end);
+            return repo;
+        }()).c_str());
+    }
 }
 
 Project::~Project()
