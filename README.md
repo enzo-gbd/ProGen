@@ -8,7 +8,7 @@ ainsi que Normez (https://github.com/ronanboiteau/NormEZ).
 Pour l'installer:
 
   ETAPE 1:
-    Télécharger VsCode (https://code.visualstudio.com/download)
+    Télécharger VsCode (https://code.visualstudio.com/download).
     Après l'installation, lancez VS Code. Ouvrez maintenant la palette de commandes (F1 ou ⇧+ ⌘+ P sur Mac) et tapez shell command pour trouver la Shell Command:     Install 'code' command in PATH commande.
 
   ETAPE 2:
@@ -18,7 +18,7 @@ Pour l'installer:
     A la racine du répertoire, lancer l'installeur avec ./install
 
   ETAPE 4:
-    Un executable ProGen a été créé, placez lee ou vous voulez et lancez le pour profiter du générateur
+    Un executable ProGen a été créé, placez le ou vous voulez et lancez le pour profiter du générateur
     
     /!\Attention/!\ le model de base de main.cpp utlise la lib fmt, il est vivement conseillé de l'installer sous peine de ne pas pouvoir compiler : 
       "brew install fmt" avec homebrew
