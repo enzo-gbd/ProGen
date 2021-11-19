@@ -1,8 +1,8 @@
 # ProGen
 GÉNÉRATEUR DE PROJET EPITECH
 
-Un générateur qui crééra tout les dossiers et fichiers nécéssaires à la réalisation d'un projet EPITECH.
-Inclu un script qui a l'éxécution, regénèrera le Makefile en incluant tout les nouveaux fichiers du dosier src/
+Un générateur qui créera tout les dossiers et fichiers nécessaires à la réalisation d'un projet EPITECH.
+Inclus un script qui a l'exécution, régénèrera le Makefile en incluant tout les nouveaux fichiers du dossier src/
 ainsi que Normez (https://github.com/ronanboiteau/NormEZ).
 
 Pour l'installer:
@@ -18,9 +18,9 @@ Pour l'installer:
     A la racine du répertoire, lancer l'installeur avec ./install
 
   ETAPE 4:
-    Un executable ProGen a été créé, placez le ou vous voulez et lancez le pour profiter du générateur
+    Un exécutable ProGen a été créé, placez le ou vous voulez et lancez le pour profiter du générateur
     
-    /!\Attention/!\ le model de base de main.cpp utlise la lib fmt, il est vivement conseillé de l'installer sous peine de ne pas pouvoir compiler : 
+    /!\Attention/!\ le model de base de main.cpp utilise la lib fmt, il est vivement conseillé de l'installer sous peine de ne pas pouvoir compiler : 
       "brew install fmt" avec homebrew
       "sudo apt install fmtlib-dev" sur Linux
   
@@ -30,5 +30,5 @@ Usage:
   Entrez @ pour le nom du projet afin de générer automatiquement le nom du projet a partir du lien GitHub
   
   Une fois le projet créé vous disposez:
-    D'un regénérateur de Makefile, utilisable avec ./makefile_regen
+    D'un régénérateur de Makefile, utilisable avec ./makefile_regen
     ainsi que d'un Normez qui vérifiera le coding style du projet, utilisable avec ./Normez.rb
