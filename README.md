@@ -25,7 +25,8 @@ Pour l'installer:
     Attention, le model de base de main.cpp utilise la lib fmt, 
     il est vivement conseillé de l'installer sous peine de ne pas pouvoir compiler : 
       "brew install fmt" avec homebrew
-      "sudo apt install fmtlib-dev" sur Linux
+      "sudo dnf -y install fmt" sur Linux
+      "Winget install fmt" sur Windows 
   
 Usage:
 
