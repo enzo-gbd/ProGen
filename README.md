@@ -9,25 +9,30 @@ Pour l'installer:
 
   ETAPE 1:
     Télécharger VsCode (https://code.visualstudio.com/download).
-    Après l'installation, lancez VS Code. Ouvrez maintenant la palette de commandes (F1 ou ⇧+ ⌘+ P sur Mac) et tapez shell command pour trouver la Shell Command:     Install 'code' command in PATH commande.
+    Après l'installation, lancez VS Code. Ouvrez maintenant la palette de commandes (F1 ou cmd+shift+P sur Linux et Windows, et ⇧+ ⌘+ P sur Mac) et tapez shell command pour trouver la Shell Command:     Install 'code' command in PATH commande.
 
   ETAPE 2:
-    Télécharger le répertoire GitHub
+    Installer la lib fmt, nécessaire à la compilation de ProGen et du modèle de base de main.cpp.
+      
+      "brew install fmt" avec homebrew
+      "sudo dnf -y install fmt" sur Linux
+      "Winget install fmt" sur Windows
 
   ETAPE 3:
-    A la racine du répertoire, lancer l'installeur avec ./install
+    Télécharger le répertoire GitHub et placez le dans le même répertoire que vos projets. C'est très important car le programme génerera votre nouveau projet à sur le meme répertoire que lui.
 
   ETAPE 4:
-    Un exécutable ProGen a été créé, placez le ou vous voulez et lancez le pour profiter du générateur
+    A la racine du répertoire GitHub, lancer l'installeur avec ./install
     
-    /!\Attention/!\ le model de base de main.cpp utilise la lib fmt, il est vivement conseillé de l'installer sous peine de ne pas pouvoir compiler : 
-      "brew install fmt" avec homebrew
-      "sudo apt install fmtlib-dev" sur Linux
+    Attention, il est obligatoire de se rendre dans le répertoire à partir du terminal et de taper ./install
+
+  ETAPE 5:
+    Un exécutable ProGen a été créé, placez le ou vous voulez et lancez le pour profiter du générateur 
   
 Usage:
 
   Suivez les instructions au lancement du programme.
-  Entrez @ pour le nom du projet afin de générer automatiquement le nom du projet a partir du lien GitHub
+  Entrez @ au moment de choisir le nom du projet afin de générer automatiquement le nom du projet a partir du lien GitHub
   
   Une fois le projet créé vous disposez:
     D'un régénérateur de Makefile, utilisable avec ./makefile_regen
