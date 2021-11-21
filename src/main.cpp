@@ -9,8 +9,8 @@ int main()
         project.Generate();
         project.Open();
     }
-    catch(Error &e){
-        std::cerr << fmt::format("Error {}: {}", e.getNumber(), e.what());
+    catch(std::exception &e){
+        std::cerr << fmt::format("Error: {}\n", e.what());
         return 1;
     }
     return 0;

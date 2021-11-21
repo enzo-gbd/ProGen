@@ -1,6 +1,8 @@
 #include "../include/main.h"
 #include <filesystem>
 #include <fstream>
+#include <algorithm>
+#include <iostream>
 #include <fmt/format.h>
 
 using namespace std::string_literals;
@@ -19,9 +21,20 @@ Project::Project(int lang, std::string name, std::string link, std::string vs) :
 m_lang(lang), m_name(name), m_link(link), m_vs(vs)
 {
     if (m_name == "@") {
-        std::string::iterator start = m_link.begin() + m_link.find("BDX") + 8;
-        std::string::iterator end = m_link.begin() + m_link.find_last_of("-");
+        std::string::iterator start;
+        std::string::iterator end;
+        if (m_link.find("BDX") != std::string::npos)
+            start = m_link.begin() + m_link.find("BDX") + 8;
+        else
+            throw Error(400, "Failed to find the project name, bad link format", 2);
+        if (m_link.find_last_of("-") != std::string::npos)
+            end = m_link.begin() + m_link.find_last_of("-");
+        else
+            throw Error(400, "Failed to find the project name, bad link format", 2);
+        if (start > end)
+            throw Error(404, "Failed to find the project name, bad link format");
         std::string name(start, end);
+        std::cout << name << std::endl;
         m_name = name;
     }
 }
@@ -30,12 +43,31 @@ void Project::Generate()
 {
     std::filesystem::current_path(std::filesystem::path(curr_path));
     auto path = fmt::format("{}/{}", curr_path, [this]() {
-        std::string::iterator start = m_link.begin() + m_link.find("B-");
-        std::string::iterator end = m_link.begin() + m_link.find(".git");
+        std::string::iterator start;
+        std::string::iterator end;
+        if (m_link.find("B-") != std::string::npos)
+            start = m_link.begin() + m_link.find("B-");
+        else
+            throw Error(400, "Failed to find the repo name, bad link format", 3);
+        if (m_link.find(".git") != std::string::npos)
+            end = m_link.begin() + m_link.find(".git");
+        else
+            throw Error(400, "Failed to find the repo name, bad link format", 3);
         std::string repo(start, end);
         return repo;
     }());
     system(fmt::format("git clone {}", m_link).c_str());
+    if ([path]() {
+        std::ofstream file(fmt::format("{}/test", path));
+        std::cout << fmt::format("{}/test", path) << std::endl;
+        if (!file.is_open())
+            return 1;
+        else
+            system(fmt::format("rm {}/test", path).c_str());
+        return 0;
+    }() == 1) {
+        throw Error(400, "Failed to clone the repo", 3);
+    }
     std::filesystem::current_path(std::filesystem::path(path));
     system("mkdir src include lib");
     system(fmt::format("cp {}/ProGen/bin/Normez.rb {}", curr_path, path).c_str());
@@ -157,8 +189,8 @@ rm .prodata ls.dat
                 code = R"(try{
 
     }
-    catch(Error &e){
-        std::cerr << fmt::format("Error {}: {}", e.getNumber(), e.what()); 
+    catch(std::exception &e){
+        std::cerr << fmt::format("Error: {}\n", e.what());
         return 1;
     }
     return 0;)";
@@ -281,11 +313,19 @@ void Project::Open()
 {
     if (m_vs == "y") {
         system(fmt::format("code {}/{}", curr_path, [this]() {
-            std::string::iterator start = m_link.begin() + m_link.find("B-");
-            std::string::iterator end = m_link.begin() + m_link.find(".git");
-            std::string repo(start, end);
-            return repo;
-        }()).c_str());
+        std::string::iterator start;
+        std::string::iterator end;
+        if (m_link.find("B-") != std::string::npos)
+            start = m_link.begin() + m_link.find("B-");
+        else
+            throw Error(400, "Failed to find the repo name, bad link format", 3);
+        if (m_link.find(".git") != std::string::npos)
+            end = m_link.begin() + m_link.find(".git");
+        else
+            throw Error(400, "Failed to find the repo name, bad link format", 3);
+        std::string repo(start, end);
+        return repo;
+    }()).c_str());
     }
 }
 
