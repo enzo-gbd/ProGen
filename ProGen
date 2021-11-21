@@ -1,5 +1,0 @@
-cd /Users/enzogouband/Desktop/project_c/ProGen/bin
-make
-./ProGen
-make fclean
-    
