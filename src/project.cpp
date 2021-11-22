@@ -34,7 +34,6 @@ m_lang(lang), m_name(name), m_link(link), m_vs(vs)
         if (start > end)
             throw Error(404, "Failed to find the project name, bad link format");
         std::string name(start, end);
-        std::cout << name << std::endl;
         m_name = name;
     }
 }
@@ -48,25 +47,24 @@ void Project::Generate()
         if (m_link.find("B-") != std::string::npos)
             start = m_link.begin() + m_link.find("B-");
         else
-            throw Error(400, "Failed to find the repo name, bad link format", 3);
+            throw Error(400, "Failed to find the repository name, bad link format", 3);
         if (m_link.find(".git") != std::string::npos)
             end = m_link.begin() + m_link.find(".git");
         else
-            throw Error(400, "Failed to find the repo name, bad link format", 3);
+            throw Error(400, "Failed to find the repository name, bad link format", 3);
         std::string repo(start, end);
         return repo;
     }());
     system(fmt::format("git clone {}", m_link).c_str());
     if ([path]() {
         std::ofstream file(fmt::format("{}/test", path));
-        std::cout << fmt::format("{}/test", path) << std::endl;
         if (!file.is_open())
             return 1;
         else
             system(fmt::format("rm {}/test", path).c_str());
         return 0;
     }() == 1) {
-        throw Error(400, "Failed to clone the repo", 3);
+        throw Error(400, "Failed to clone the repository", 3);
     }
     std::filesystem::current_path(std::filesystem::path(path));
     system("mkdir src include lib");
@@ -119,15 +117,14 @@ clean:
 fclean: clean
 	rm -rf $(NAME)
 
-re: fclean all
-        )", m_name, args, m_name, compil);
+re: fclean all)", m_name, args, m_name, compil);
         file.close();
     }();
     [this]() {
         std::ofstream file(".gitignore");
         if (!file.is_open())
             throw(Error(400, "Failed to create .gitignore", 1));
-        file << "*.o\n.prodata\nmakefile_regen\nNormez.rb";
+        file << "*.o\n.prodata\nmakefile_regen\nNormez.rb\n.VsCode";
         file.close();
     }();
     [this, path]() {
@@ -214,7 +211,7 @@ rm .prodata ls.dat
 
 {}
 
-int main() 
+int main()
 {{
     {}
 }}
@@ -231,12 +228,14 @@ int main()
         switch (static_cast<lang::project_lang> (m_lang)) {
             case lang::project_lang::C:
             {
-                includes = " ";
+                includes = "/";
                 break;
             }
             case lang::project_lang::Cpp:
             {
-                includes = R"(#include <iostream>
+                includes = R"(/
+                
+#include <iostream>
 #include "error.h")";
                 break;
             }
@@ -248,10 +247,7 @@ int main()
 ** main.h
 ** File description:
 ** {}
-*/
-
-{}
-)", m_name, includes);
+*{})", m_name, includes);
         file.close();
     }();
     switch (static_cast<lang::project_lang>(m_lang))
@@ -268,36 +264,38 @@ int main()
 ** EPITECH PROJECT, 2022
 ** error.h
 ** File description:
-** {}
+** n4s
 */
 
 #include <exception>
 #include <string>
- 
-class Error: public std::exception
+
+class Error : public std::exception
 {{
 public:
-    Error(int number = 0, std::string const& text = "", int level = 0) throw()
-         : m_number(number), m_text(text), m_level(level)
-    {{}}
- 
-     virtual const char* what() const throw()
-     {{
-         return m_text.c_str();
-     }}
-     
-     int getNumber() const throw()
-     {{
-          return m_number;
-     }}
-    
+    Error(int number = 0, std::string const &text = "", int level = 0) throw()
+        : m_number(number), m_text(text), m_level(level)
+    {{
+    }}
+
+    virtual const char *what() const throw()
+    {{
+        return m_text.c_str();
+    }}
+
+    int getNumber() const throw()
+    {{
+        return m_number;
+    }}
+
     virtual ~Error() throw()
-    {{}}
- 
+    {{
+    }}
+
 private:
-    int m_number;               //Numéro de l'erreur
-    std::string m_text;            //Description de l'erreur
-    int m_level;               //Niveau de l'erreur
+    int m_number;
+    std::string m_text;
+    int m_level;
 }};
 )", m_name);
             file.close();

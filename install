@@ -4,3 +4,4 @@ cd ../
 ./installer
 cd installer_f
 make fclean
+clear
