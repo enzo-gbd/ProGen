@@ -11,7 +11,8 @@ Pour l'installer:
     Installer la lib fmt, nécessaire à la compilation de ProGen et du modèle de base de main.cpp.
       
       "brew install fmt" avec homebrew
-      "sudo dnf -y install fmt" sur Linux
+      "sudo dnf -y install fmt"
+      "apt install libfmt-dev" sur Linux
       "Winget install fmt" sur Windows
 
   ETAPE 2 (optionnel si vous ne souhaitez pas que le programme ouvre automatiquement vos projets avec VsCode):
