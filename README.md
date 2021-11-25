@@ -8,15 +8,16 @@ ainsi que Normez (https://github.com/ronanboiteau/NormEZ).
 Pour l'installer:
 
   ETAPE 1:
-    Télécharger VsCode (https://code.visualstudio.com/download).
-    Après l'installation, lancez VS Code. Ouvrez maintenant la palette de commandes (F1 ou cmd+shift+P sur Linux et Windows, et ⇧+ ⌘+ P sur Mac) et tapez shell command pour trouver la Shell Command:     Install 'code' command in PATH commande.
-
-  ETAPE 2:
     Installer la lib fmt, nécessaire à la compilation de ProGen et du modèle de base de main.cpp.
       
       "brew install fmt" avec homebrew
-      "sudo dnf -y install fmt" sur Linux
+      "sudo dnf -y install fmt"
+      "apt install libfmt-dev" sur Linux
       "Winget install fmt" sur Windows
+
+  ETAPE 2 (optionnel si vous ne souhaitez pas que le programme ouvre automatiquement vos projets avec VsCode):
+    Télécharger VsCode (https://code.visualstudio.com/download).
+    Après l'installation, lancez VS Code. Ouvrez maintenant la palette de commandes (F1 ou cmd+shift+P sur Linux et Windows, et ⇧+ ⌘+ P sur Mac) et tapez shell command pour trouver la Shell Command:     Install 'code' command in PATH commande.
 
   ETAPE 3:
     Télécharger le répertoire GitHub et placez le dans le même répertoire que vos projets. C'est très important car le programme génerera votre nouveau projet à sur le meme répertoire que lui.
