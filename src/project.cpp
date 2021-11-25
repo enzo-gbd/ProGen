@@ -124,7 +124,7 @@ re: fclean all)", m_name, args, m_name, compil);
         std::ofstream file(".gitignore");
         if (!file.is_open())
             throw(Error(400, "Failed to create .gitignore", 1));
-        file << "*.o\n.prodata\nmakefile_regen\nNormez.rb\n.VsCode";
+        file << "*.o\n.prodata\nmakefile_regen\nNormez.rb\ngetlib";
         file.close();
     }();
     [this, path]() {
@@ -165,6 +165,35 @@ rm .prodata ls.dat
         )", ext, curr_path, curr_path, curr_path);
         file.close();
         system("chmod 777 makefile_regen");
+    }();
+    [this]() {
+        std::ofstream file("getlib");
+        if (!file.is_open())
+            throw(Error(400, "Failed to create getlib", 1));
+        switch (static_cast<lang::project_lang>(m_lang)) {
+        case lang::project_lang::C:
+        {
+            file << fmt::format(R"(cp .prodata {}/ProGen/getlib/bin
+cd {}/ProGen/getlib/templates
+echo * > ls.dat
+mv ls.dat ../bin/ls.dat
+cd ../bin
+make
+./getlib
+make fclean
+rm .prodata ls.dat
+        )", curr_path, curr_path);
+            file.close();
+            system("chmod 777 getlib");
+            break;
+        }
+        case lang::project_lang::Cpp:
+        {
+            break;
+        }
+        default:
+            break;
+        }
     }();
     // on entre dans src
     std::filesystem::current_path(std::filesystem::path(fmt::format("{}/src", path)));
@@ -228,14 +257,13 @@ int main()
         switch (static_cast<lang::project_lang> (m_lang)) {
             case lang::project_lang::C:
             {
-                includes = "/";
+                includes = R"(#include <stdio.h>
+#include "list.h")";
                 break;
             }
             case lang::project_lang::Cpp:
             {
-                includes = R"(/
-                
-#include <iostream>
+                includes = R"(#include <iostream>
 #include "error.h")";
                 break;
             }
@@ -247,13 +275,43 @@ int main()
 ** main.h
 ** File description:
 ** {}
-*{})", m_name, includes);
+*/
+
+{})", m_name, includes);
         file.close();
     }();
     switch (static_cast<lang::project_lang>(m_lang))
     {
     case lang::project_lang::C:
+    {
+        [this]() {
+            std::ofstream file("list.h");
+            if (!file.is_open())
+                throw(Error(400, "Failed to create list.h", 1));
+            file << fmt::format(R"(/*
+** EPITECH PROJECT, 2022
+** list.h
+** File description:
+** {}
+*/
+
+typedef struct element
+{{
+    struct element *next;
+    struct element *previous;
+}}element_t;
+
+typedef struct list
+{{
+    int size;
+    t_element *begin;
+    t_element *end;
+}}t_list;
+)", m_name);
+            file.close();
+        }();
         break;
+    }
     case lang::project_lang::Cpp:
     {
         [this]() {
